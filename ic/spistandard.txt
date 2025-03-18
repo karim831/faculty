@@ -1,0 +1,9 @@
+.include ../180nm.lib
+vdd vdd 0 1.8
+vin A 0 pulse(0 1.8 2u 1u 1u 5u 12u)
+cout Y 0 0.5p
+.control
+tran 0.1u 20u
+plot v(A) v(Y)
+.endc
+.end

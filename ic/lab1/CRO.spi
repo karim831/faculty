@@ -1,0 +1,37 @@
+*** SPICE deck for cell CRO{sch} from library VCO
+*** Created on Mon Mar 17, 2025 16:28:46
+*** Last revised on Tue Mar 18, 2025 14:23:36
+*** Written on Tue Mar 18, 2025 14:23:50 by Electric VLSI Design System, version 9.07
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: CRO{sch}
+MM1 net@74 VCO_Output net@11 net@11 PMOS L=0.2U W=2U
+MM2 net@74 VCO_Output net@66 net@66 NMOS L=0.2U W=1U
+MM3 net@11 net@160 vdd vdd PMOS L=0.2U W=2U
+MM4 net@66 ControlledInput gnd gnd NMOS L=0.2U W=1U
+MM5 net@160 net@160 vdd vdd PMOS L=0.2U W=2U
+MM6 net@160 ControlledInput gnd gnd NMOS L=0.2U W=1U
+MM7 net@96 net@74 net@71 net@71 PMOS L=0.2U W=2U
+MM8 net@96 net@74 net@80 net@80 NMOS L=0.2U W=1U
+MM9 net@71 net@160 vdd vdd PMOS L=0.2U W=2U
+MM10 net@80 ControlledInput gnd gnd NMOS L=0.2U W=1U
+MM11 VCO_Output net@96 net@93 net@93 PMOS L=0.2U W=2U
+MM12 VCO_Output net@96 net@102 net@102 NMOS L=0.2U W=1U
+MM13 net@93 net@160 vdd vdd PMOS L=0.2U W=2U
+MM14 net@102 ControlledInput gnd gnd NMOS L=0.2U W=1U
+
+* Spice Code nodes in cell cell 'CRO{sch}'
+.include ../180nm.lib
+.global gnd vdd
+VDD vdd 0 1.8
+Vcontrol ControlledInput 0 PWL(0p 0.9V 500p .9 501p 1.8V)
+.ic v(VCO_Output) = 0.1
+.control
+  tran 0.1p 1000p
+  plot v(ControlledInput) v(VCO_Output)
+.endc
+.end
+.END

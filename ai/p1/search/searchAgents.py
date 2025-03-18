@@ -519,23 +519,8 @@ class ClosestDotSearchAgent(SearchAgent):
         problem = AnyFoodSearchProblem(gameState)
 
         "*** YOUR CODE HERE ***"
-        path = []
-        while(not problem.isGoalState(startPosition))
-            possibles = [
-                (startPosition[0],startPosition[1]-1),
-                (startPosition[0],startPosition[1]+1),
-                (startPosition[0]-1,startPosition[1]),
-                (startPosition[0]+1,startPosition[1]),
-
-            ]
-        min = -1
-            
-            for i in range(0,food.width):
-                for j in range(0,food.height):
-                    if(food[i][j] == True):
-                        mazeDistance(possible[0],(i,j))
-            
-        return frontier[1]
+        from search import breadthFirstSearch
+        return breadthFirstSearch(problem)
 class AnyFoodSearchProblem(PositionSearchProblem):
     """
     A search problem for finding a path to any food.
@@ -570,9 +555,7 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         x,y = state
 
         "*** YOUR CODE HERE ***"
-        if(self.food.count() == 0)
-            return True
-        return False
+        return state in self.food.asList()
 
 def mazeDistance(point1: Tuple[int, int], point2: Tuple[int, int], gameState: pacman.GameState) -> int:
     """
