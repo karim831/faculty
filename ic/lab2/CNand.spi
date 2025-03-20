@@ -1,0 +1,27 @@
+*** SPICE deck for cell CNand{sch} from library Nand
+*** Created on Wed Mar 19, 2025 00:14:20
+*** Last revised on Thu Mar 20, 2025 17:40:02
+*** Written on Thu Mar 20, 2025 17:40:06 by Electric VLSI Design System, version 9.07
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: CNand{sch}
+MM1 Y A vdd vdd PMOS L=0.2U W=2U
+MM2 Y A net@206 net@206 NMOS L=0.2U W=2U
+MM3 Y B vdd vdd PMOS L=0.2U W=2U
+MM4 net@206 B gnd gnd NMOS L=0.2U W=2U
+
+* Spice Code nodes in cell cell 'CNand{sch}'
+.include ../mos.lib
+vdd vdd 0 1.8
+vinA A 0 pulse(0 1.8 2u 1u 1u 5u 12u)
+vinB B 0 pulse(0 1.8 14u 1u 1u 10u 24u)
+cout Y 0 0.5p
+.control
+tran 0.1u 100u
+plot v(A), v(B), v(Y)
+.endc
+.end
+.END
