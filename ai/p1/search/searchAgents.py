@@ -519,7 +519,7 @@ class ClosestDotSearchAgent(SearchAgent):
 
         "*** YOUR CODE HERE ***"
         import search
-        return search.breadthFirstSearch(problem)
+        return search.uniformCostSearch(problem)
 
 class AnyFoodSearchProblem(PositionSearchProblem):
     """
