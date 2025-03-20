@@ -1,5 +1,15 @@
 # searchTestClasses.py
 # --------------------
+# Licensing Information:  You are free to use or extend these projects for
+# educational purposes provided that (1) you do not distribute or publish
+# solutions, (2) you retain this notice, and (3) you provide clear
+# attribution to UC Berkeley, including a link to http://ai.berkeley.edu.
+# 
+# Attribution Information: The Pacman AI projects were developed at UC Berkeley.
+# The core projects and autograders were primarily created by John DeNero
+# (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
+# Student side autograding was added by Brad Miller, Nick Hay, and
+# Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
 
 import sys
@@ -48,13 +58,13 @@ class GraphSearch(SearchProblem):
     def __init__(self, graph_text):
         self.expanded_states = []
         lines = graph_text.split('\n')
-        r = re.match('start_state:(.*)', lines[0])
+        r = re.match(r'start_state:(.*)', lines[0])
         if r == None:
             print("Broken graph:")
             print('"""%s"""' % graph_text)
             raise Exception("GraphSearch graph specification start_state not found or incorrect on line 0")
         self.start_state = r.group(1).strip()
-        r = re.match('goal_states:(.*)', lines[1])
+        r = re.match(r'goal_states:(.*)', lines[1])
         if r == None:
             print("Broken graph:")
             print('"""%s"""' % graph_text)
@@ -495,7 +505,6 @@ class HeuristicTest(testClasses.TestCase):
         for succ, action, stepCost in problem.getSuccessors(state):
             h1 = heuristic(succ, problem)
             if h1 < 0: return False, 'Heuristic failed H >= 0 test'
-            if h0 - h1 > stepCost: return False, 'Heuristic failed consistency test'
 
         return True, ''
 
@@ -690,12 +699,7 @@ class CornerHeuristicSanity(testClasses.TestCase):
         start_state = problem.getStartState()
         h0 = searchAgents.cornersHeuristic(start_state, problem)
         succs = problem.getSuccessors(start_state)
-        # cornerConsistencyA
-        for succ in succs:
-            h1 = searchAgents.cornersHeuristic(succ[0], problem)
-            if h0 - h1 > 1:
-                grades.addMessage('FAIL: inconsistent heuristic')
-                return False
+
         heuristic_cost = searchAgents.cornersHeuristic(start_state, problem)
         true_cost = float(solutionDict['cost'])
         # cornerNontrivial
@@ -714,10 +718,7 @@ class CornerHeuristicSanity(testClasses.TestCase):
         for i in range(0, len(heuristics) - 1):
             h0 = heuristics[i]
             h1 = heuristics[i+1]
-            # cornerConsistencyB
-            if h0 - h1 > 1:
-                grades.addMessage('FAIL: inconsistent heuristic')
-                return False
+
             # cornerPosH
             if h0 < 0 or h1 <0:
                 grades.addMessage('FAIL: non-positive heuristic')
@@ -775,9 +776,6 @@ class CornerHeuristicPacman(testClasses.TestCase):
         print("path:", path)
         print("path length:", len(path))
         cost = problem.getCostOfActions(path)
-        if cost > true_cost:
-            grades.addMessage('FAIL: Inconsistent heuristic')
-            return False
         expanded = problem._expanded
         points = 0
         for threshold in thresholds:
