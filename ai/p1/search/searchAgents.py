@@ -376,7 +376,15 @@ def cornersHeuristic(state: Any, problem: CornersProblem):
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
 
     "*** YOUR CODE HERE ***"
-    return 0 # Default to trivial solution
+    import math
+    max = 0
+    for corner in corners:
+        if corner in state[1]:
+            dist = abs(corner[0] - state[0][0]) + abs(corner[0] - state[0][0])
+            if(max == 0 or max < dist):
+                max = dist
+     
+    return max
 
 
 
