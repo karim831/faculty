@@ -184,8 +184,8 @@ class PriorityQueue:
         self.count += 1
 
     def pop(self):
-        (cost, _, item) = heapq.heappop(self.heap)
-        return (cost,item)
+        _, _, item = heapq.heappop(self.heap)
+        return item
 
     def isEmpty(self):
         return len(self.heap) == 0
@@ -195,7 +195,7 @@ class PriorityQueue:
         # If item already in priority queue with equal or lower priority, do nothing.
         # If item not in priority queue, do the same thing as self.push.
         for index, (p, c, i) in enumerate(self.heap):
-            if i[0] == item[0]:
+            if i == item:
                 if p <= priority:
                     break
                 del self.heap[index]

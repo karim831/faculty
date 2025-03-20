@@ -129,22 +129,32 @@ def breadthFirstSearch(problem: SearchProblem) -> List[Directions]:
     return []
 
 
-
 def uniformCostSearch(problem: SearchProblem) -> List[Directions]:
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
-    explored = set()
     frontier = util.PriorityQueue()
-    frontier.push((problem.getStartState(),[]),0)
+    frontier.push((problem.getStartState()),0)
+    statesCost = {problem.getStartState(): 0}
+    statesPath = {problem.getStartState(): []} 
     while(not frontier.isEmpty()):
-        (cost,(state,path)) = frontier.pop()
+        state = frontier.pop()
+        cost = statesCost[state]
+        path = statesPath[state]
         if(problem.isGoalState(state)):
             return path
-        explored.add(state)
-        for successor in  problem.getSuccessors(state):
-            if(successor[0] not in explored):
-                frontier.update((successor[0],path + [successor[1]]),successor[2]+cost)
-                
+        for successor in problem.getSuccessors(state):
+            newPath = path + [successor[1]]
+            newCost = cost + successor[2] 
+            if(successor[0] not in statesCost or newCost < statesCost[successor[0]]):
+                frontier.update((successor[0]),newCost)
+                statesCost[successor[0]] = newCost
+                statesPath[successor[0]] = newPath
+    return []
+
+     
+    
+
+
 def nullHeuristic(state, problem=None) -> float:
     """
     A heuristic function estimates the cost from the current state to the nearest
@@ -152,10 +162,30 @@ def nullHeuristic(state, problem=None) -> float:
     """
     return 0
 
+    
+
 def aStarSearch(problem: SearchProblem, heuristic=nullHeuristic) -> List[Directions]:
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    frontier = util.PriorityQueue()
+    frontier.push((problem.getStartState()),heuristic(problem.getStartState(),problem))
+    statesCost = {problem.getStartState(): 0}
+    statesPath = {problem.getStartState(): []} 
+    while(not frontier.isEmpty()):
+        state = frontier.pop()
+        cost = statesCost[state]
+        path = statesPath[state]
+        if(problem.isGoalState(state)):
+            return path
+        for successor in problem.getSuccessors(state):
+            newPath = path + [successor[1]]
+            newCost = cost + successor[2] 
+            if(successor[0] not in statesCost or newCost < statesCost[successor[0]]):
+                frontier.update((successor[0]),newCost+heuristic(successor[0],problem))
+                statesCost[successor[0]] = newCost
+                statesPath[successor[0]] = newPath
+    return []
+
 
 # Abbreviations
 bfs = breadthFirstSearch
