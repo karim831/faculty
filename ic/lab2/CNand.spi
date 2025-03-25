@@ -1,27 +1,107 @@
-*** SPICE deck for cell CNand{sch} from library Nand
-*** Created on Wed Mar 19, 2025 00:14:20
-*** Last revised on Thu Mar 20, 2025 17:40:02
-*** Written on Thu Mar 20, 2025 17:40:06 by Electric VLSI Design System, version 9.07
+*** SPICE deck for cell CNand{lay} from library Nand
+*** Created on Wed Mar 19, 2025 01:46:40
+*** Last revised on Mon Mar 24, 2025 17:31:56
+*** Written on Mon Mar 24, 2025 17:32:02 by Electric VLSI Design System, version 9.07
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+***    P-Active:	areacap=0.9FF/um^2,	edgecap=0.0FF/um,	res=2.5ohms/sq
+***    N-Active:	areacap=0.9FF/um^2,	edgecap=0.0FF/um,	res=3.0ohms/sq
+***    Polysilicon-1:	areacap=0.1467FF/um^2,	edgecap=0.0608FF/um,	res=6.2ohms/sq
+***    Polysilicon-2:	areacap=1.0FF/um^2,	edgecap=0.0FF/um,	res=50.0ohms/sq
+***    Transistor-Poly:	areacap=0.09FF/um^2,	edgecap=0.0FF/um,	res=2.5ohms/sq
+***    Poly-Cut:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=2.2ohms/sq
+***    Active-Cut:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=2.5ohms/sq
+***    Metal-1:	areacap=0.1209FF/um^2,	edgecap=0.1104FF/um,	res=0.078ohms/sq
+***    Via1:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=1.0ohms/sq
+***    Metal-2:	areacap=0.0843FF/um^2,	edgecap=0.0974FF/um,	res=0.078ohms/sq
+***    Via2:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=0.9ohms/sq
+***    Metal-3:	areacap=0.0843FF/um^2,	edgecap=0.0974FF/um,	res=0.078ohms/sq
+***    Via3:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=0.8ohms/sq
+***    Metal-4:	areacap=0.0843FF/um^2,	edgecap=0.0974FF/um,	res=0.078ohms/sq
+***    Via4:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=0.8ohms/sq
+***    Metal-5:	areacap=0.0843FF/um^2,	edgecap=0.0974FF/um,	res=0.078ohms/sq
+***    Via5:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=0.8ohms/sq
+***    Metal-6:	areacap=0.0423FF/um^2,	edgecap=0.1273FF/um,	res=0.036ohms/sq
+***    Hi-Res:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=1.0ohms/sq
 
-.global gnd vdd
+*** TOP LEVEL CELL: CNand{lay}
+MM1 Y A#3M1_poly-left vdd vdd PMOS L=0.2U W=2U AS=1.4P AD=1.575P PS=6.7U PD=9.2U
+MM2 net@98 A#0M2_poly-right gnd gnd NMOS L=0.2U W=2U AS=2.05P AD=0.408P PS=9.9U PD=2.45U
+MM3 Y B#0M3_poly-left net@98 gnd NMOS L=0.2U W=2U AS=0.408P AD=1.575P PS=2.45U PD=9.2U
+MM4 vdd B#3M4_poly-left Y vdd PMOS L=0.2U W=2U AS=1.575P AD=1.4P PS=9.2U PD=6.7U
+** Extracted Parasitic Capacitors ***
+C0 Y 0 2.678fF
+C1 A#2pin@28_polysilicon-1 0 0.113fF
+C2 B#2pin@31_polysilicon-1 0 0.125fF
+** Extracted Parasitic Resistors ***
+R0 A#0M2_poly-right A#0M2_poly-right##0 7.75
+R1 A#0M2_poly-right##0 A#0M2_poly-right##1 7.75
+R2 A#0M2_poly-right##1 A#1pin@26_polysilicon-1 7.75
+R3 A#1pin@26_polysilicon-1 A#1pin@26_polysilicon-1##0 8.857
+R4 A#1pin@26_polysilicon-1##0 A#1pin@26_polysilicon-1##1 8.857
+R5 A#1pin@26_polysilicon-1##1 A#1pin@26_polysilicon-1##2 8.857
+R6 A#1pin@26_polysilicon-1##2 A#1pin@26_polysilicon-1##3 8.857
+R7 A#1pin@26_polysilicon-1##3 A#1pin@26_polysilicon-1##4 8.857
+R8 A#1pin@26_polysilicon-1##4 A#1pin@26_polysilicon-1##5 8.857
+R9 A#1pin@26_polysilicon-1##5 A#2pin@28_polysilicon-1 8.857
+R10 A#3M1_poly-left A#3M1_poly-left##0 9.688
+R11 A#3M1_poly-left##0 A#3M1_poly-left##1 9.688
+R12 A#3M1_poly-left##1 A#3M1_poly-left##2 9.688
+R13 A#3M1_poly-left##2 A#2pin@28_polysilicon-1 9.688
+R14 A#2pin@28_polysilicon-1 A#2pin@28_polysilicon-1##0 9.3
+R15 A#2pin@28_polysilicon-1##0 A#2pin@28_polysilicon-1##1 9.3
+R16 A#2pin@28_polysilicon-1##1 A#2pin@28_polysilicon-1##2 9.3
+R17 A#2pin@28_polysilicon-1##2 A#2pin@28_polysilicon-1##3 9.3
+R18 A#2pin@28_polysilicon-1##3 A 9.3
+R19 B#0M3_poly-left B#0M3_poly-left##0 7.75
+R20 B#0M3_poly-left##0 B#0M3_poly-left##1 7.75
+R21 B#0M3_poly-left##1 B#1pin@29_polysilicon-1 7.75
+R22 B#1pin@29_polysilicon-1 B#1pin@29_polysilicon-1##0 9.723
+R23 B#1pin@29_polysilicon-1##0 B#1pin@29_polysilicon-1##1 9.723
+R24 B#1pin@29_polysilicon-1##1 B#1pin@29_polysilicon-1##2 9.723
+R25 B#1pin@29_polysilicon-1##2 B#1pin@29_polysilicon-1##3 9.723
+R26 B#1pin@29_polysilicon-1##3 B#1pin@29_polysilicon-1##4 9.723
+R27 B#1pin@29_polysilicon-1##4 B#1pin@29_polysilicon-1##5 9.723
+R28 B#1pin@29_polysilicon-1##5 B#1pin@29_polysilicon-1##6 9.723
+R29 B#1pin@29_polysilicon-1##6 B#1pin@29_polysilicon-1##7 9.723
+R30 B#1pin@29_polysilicon-1##7 B#1pin@29_polysilicon-1##8 9.723
+R31 B#1pin@29_polysilicon-1##8 B#1pin@29_polysilicon-1##9 9.723
+R32 B#1pin@29_polysilicon-1##9 B#2pin@31_polysilicon-1 9.723
+R33 B#3M4_poly-left B#3M4_poly-left##0 9.881
+R34 B#3M4_poly-left##0 B#3M4_poly-left##1 9.881
+R35 B#3M4_poly-left##1 B#3M4_poly-left##2 9.881
+R36 B#3M4_poly-left##2 B#3M4_poly-left##3 9.881
+R37 B#3M4_poly-left##3 B#3M4_poly-left##4 9.881
+R38 B#3M4_poly-left##4 B#3M4_poly-left##5 9.881
+R39 B#3M4_poly-left##5 B#3M4_poly-left##6 9.881
+R40 B#3M4_poly-left##6 B#3M4_poly-left##7 9.881
+R41 B#3M4_poly-left##7 B#3M4_poly-left##8 9.881
+R42 B#3M4_poly-left##8 B#3M4_poly-left##9 9.881
+R43 B#3M4_poly-left##9 B#3M4_poly-left##10 9.881
+R44 B#3M4_poly-left##10 B#3M4_poly-left##11 9.881
+R45 B#3M4_poly-left##11 B#3M4_poly-left##12 9.881
+R46 B#3M4_poly-left##12 B#3M4_poly-left##13 9.881
+R47 B#3M4_poly-left##13 B#3M4_poly-left##14 9.881
+R48 B#3M4_poly-left##14 B#2pin@31_polysilicon-1 9.881
+R49 B#2pin@31_polysilicon-1 B#2pin@31_polysilicon-1##0 8.636
+R50 B#2pin@31_polysilicon-1##0 B#2pin@31_polysilicon-1##1 8.636
+R51 B#2pin@31_polysilicon-1##1 B#2pin@31_polysilicon-1##2 8.636
+R52 B#2pin@31_polysilicon-1##2 B#2pin@31_polysilicon-1##3 8.636
+R53 B#2pin@31_polysilicon-1##3 B#2pin@31_polysilicon-1##4 8.636
+R54 B#2pin@31_polysilicon-1##4 B#2pin@31_polysilicon-1##5 8.636
+R55 B#2pin@31_polysilicon-1##5 B 8.636
 
-*** TOP LEVEL CELL: CNand{sch}
-MM1 Y A vdd vdd PMOS L=0.2U W=2U
-MM2 Y A net@206 net@206 NMOS L=0.2U W=2U
-MM3 Y B vdd vdd PMOS L=0.2U W=2U
-MM4 net@206 B gnd gnd NMOS L=0.2U W=2U
-
-* Spice Code nodes in cell cell 'CNand{sch}'
+* Spice Code nodes in cell cell 'CNand{lay}'
 .include ../mos.lib
 vdd vdd 0 1.8
-vinA A 0 pulse(0 1.8 2u 1u 1u 5u 12u)
-vinB B 0 pulse(0 1.8 14u 1u 1u 10u 24u)
+vinA A 0 pulse(0 1.8 0 1p 1p 20u 40u)
+vinB B 0 pulse(0 1.8 0 1p 1p 40u 80u)
 cout Y 0 0.5p
 .control
-tran 0.1u 100u
-plot v(A), v(B), v(Y)
+tran 0.1u 160u
+plot v(A)
+plot v(B)
+plot  v(Y)
 .endc
 .end
 .END

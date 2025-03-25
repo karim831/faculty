@@ -1,7 +1,7 @@
 *** SPICE deck for cell CRO{sch} from library VCO
 *** Created on Mon Mar 17, 2025 16:28:46
-*** Last revised on Thu Mar 20, 2025 15:41:24
-*** Written on Thu Mar 20, 2025 15:41:41 by Electric VLSI Design System, version 9.07
+*** Last revised on Sat Mar 22, 2025 15:33:10
+*** Written on Sat Mar 22, 2025 15:33:35 by Electric VLSI Design System, version 9.07
 *** Layout tech: mocmos, foundry MOSIS
 *** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
 
@@ -27,11 +27,12 @@ MM14 net@102 ControlledInput gnd gnd NMOS L=0.2U W=2U
 .include ../mos.lib
 .global gnd vdd
 VDD vdd 0 1.8
-Vcontrol ControlledInput 0 PWL(0p .9V 500p 0.9V 500.1p 1.8V)
+Vcontrol ControlledInput 0 SIN(1.35 0.45 1G)
 .ic v(VCO_Output) = 0.1
 .control
-  tran 0.1p 1000p
+  tran 0.1p 2n
   plot v(ControlledInput) v(VCO_Output)
 .endc
 .end
+.END
 .END

@@ -31,7 +31,7 @@ Evdd|VDD|D5G2;Y1;|pin@4||U
 X
 
 # Cell CRO;1{sch}
-CCRO;1{sch}||schematic|1742221726427|1742478084273|
+CCRO;1{sch}||schematic|1742221726427|1742650390138|
 ICRO;1{ic}|CRO@0||-53|31.5|||D5G4;
 N4-Port-Transistor|M1|D5G1;Y-4;|-7|16.5|||YR|2|ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)D20.0|SIM_spice_model(D5G1;X1;Y-4;)SPMOS
 N4-Port-Transistor|M2|D5G1;X1;Y-4;|-7|9.5|||R||ATTR_length(D5G0.5;X-0.5;Y-1;)D2.0|ATTR_width(D5G1;X0.5;Y-1;)D20.0|SIM_spice_model(D5G1;Y-4;)SNMOS
@@ -124,7 +124,7 @@ NWire_Pin|pin@88||-14.5|33.5||||
 NWire_Pin|pin@89||35|33.5||||
 NWire_Pin|pin@90||35|13.5||||
 NWire_Pin|pin@91||26.5|-3.5||||
-Ngeneric:Invisible-Pin|pin@92||-17.5|47.5|||||SIM_spice_card(D5G1;)S[.include ../mos.lib,.global gnd vdd,VDD vdd 0 1.8,Vcontrol ControlledInput 0 PWL(0p .9V 500p 0.9V 500.1p 1.8V),.ic v(VCO_Output) = 0.1,.control,  tran 0.1p 1000p,  plot v(ControlledInput) v(VCO_Output),.endc,.end]
+Ngeneric:Invisible-Pin|pin@92||-17.5|47.5|||||SIM_spice_card(D5G1;)S[.include ../mos.lib,.global gnd vdd,VDD vdd 0 1.8,Vcontrol ControlledInput 0 SIN(1.35 0.45 1G),.ic v(VCO_Output) = 0.1,.control,  tran 0.1p 2n,  plot v(ControlledInput) v(VCO_Output),.endc,.end,.END]
 NWire_Pin|pin@93||-25|26||||
 NWire_Pin|pin@94||-25|27.5||||
 NWire_Pin|pin@96||-24|27.5||||
