@@ -2,8 +2,8 @@ fs = 10000;
 fc1 = 200;
 fc2 = 2000;
 
-#n = 4; 
-n = 21; 
+n = 4; 
+#n = 21; 
 [b,a] = butter(n,[fc1 fc2]/(fs/2),'bandpass');
 
 
