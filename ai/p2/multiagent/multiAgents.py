@@ -155,7 +155,41 @@ class MinimaxAgent(MultiAgentSearchAgent):
         Returns whether or not the game state is a losing state
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        score = -float('inf')
+        move = None
+        for action in gameState.getLegalActions():
+            tmp = self.miniMax(gameState.generateSuccessor(0,action),0,1)
+            if(score < tmp):
+                move = action
+                score = tmp
+        return move        
+
+    def miniMax(self,state,depth,agentIndex):
+        if(depth == self.depth or state.isWin() or state.isLose()):
+            return self.evaluationFunction(state)
+
+
+        actions = state.getLegalActions(agentIndex)
+        if(actions is None):
+            return self.evaluationFunction(state)
+
+        nextAgent = (agentIndex + 1) % state.getNumAgents()
+        nextDepth = depth+1 if nextAgent == 0 else depth
+        scores = []
+        for action in actions:
+            scores.append(self.minimax(state.generateSuccessor(agentIndex,action),nextDepth,nextAgent))
+        
+        if(agentIndex == 0):
+            return max(scores)
+        else:
+            return min(scores) 
+        
+
+        
+
+        
+    
+        
 
 class AlphaBetaAgent(MultiAgentSearchAgent):
     """
@@ -167,7 +201,41 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         Returns the minimax action using self.depth and self.evaluationFunction
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        eval = -float('inf')
+        move = None
+        for action in gameState.getLegalActions():
+            tmp = self.alphaPeta(eval,float('inf'),gameState.generateSuccessor(0,action),0,1)
+            if(tmp > eval):
+                eval = tmp
+                move = action
+
+        return move
+
+    def alphaPeta(self,alpha: float, peta: float,state :GameState,depth: int,agentIndex :int):
+        # import pdb; pdb.set_trace()
+        if(depth == self.depth or state.isLose() or state.isWin()):
+            return self.evaluationFunction(state)
+        
+        actions = state.getLegalActions(agentIndex)
+        if(actions is None):
+            return self.evaluationFunction(state)
+        
+        newAgentIndex = (agentIndex + 1) % state.getNumAgents()
+        newDepth = depth + 1 if newAgentIndex == 0 else depth     
+
+        eval = -float('inf') if agentIndex == 0 else float('inf')
+        for action in actions:
+            if(agentIndex == 0):
+                eval = max(eval,self.alphaPeta(alpha,peta,state.generateSuccessor(agentIndex,action),newDepth,newAgentIndex))
+                alpha = max(eval,alpha)
+            else:
+                eval = min(eval,self.alphaPeta(alpha,peta,state.generateSuccessor(agentIndex,action),newDepth,newAgentIndex))
+                peta = min(eval,peta)
+            if((agentIndex == 0 and alpha > peta) or (agentIndex != 0 and peta < alpha)):
+                return eval
+        return eval    
+        
+
 
 class ExpectimaxAgent(MultiAgentSearchAgent):
     """
