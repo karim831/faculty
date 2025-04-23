@@ -177,7 +177,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
         nextDepth = depth+1 if nextAgent == 0 else depth
         scores = []
         for action in actions:
-            scores.append(self.minimax(state.generateSuccessor(agentIndex,action),nextDepth,nextAgent))
+            scores.append(self.miniMax(state.generateSuccessor(agentIndex,action),nextDepth,nextAgent))
         
         if(agentIndex == 0):
             return max(scores)
@@ -250,7 +250,32 @@ class ExpectimaxAgent(MultiAgentSearchAgent):
         legal moves.
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        eval = -float('inf')
+        move = None
+        for action in gameState.getLegalActions(0):
+            tmp = self.expectimax(gameState.generateSuccessor(0,action),0,1)
+            if(tmp > eval):
+                eval = tmp
+                move = action
+        return move
+            
+
+        
+    def expectimax(self, state: GameState, depth: int, agentIndex: int):
+        if(depth == self.depth or state.isLose() or state.isWin()):
+            return self.evaluationFunction(state)
+        
+        newAgentIndex = (agentIndex + 1) % state.getNumAgents()
+        newDepth = depth + 1 if newAgentIndex == 0 else depth
+        evals = []
+        for action in state.getLegalActions(agentIndex):
+            evals.append(self.expectimax(state.generateSuccessor(agentIndex,action),newDepth,newAgentIndex))
+        
+        if(agentIndex == 0):
+            return max(evals)
+        else:
+            return sum(evals) / len(evals)
+
 
 def betterEvaluationFunction(currentGameState: GameState):
     """
@@ -260,7 +285,39 @@ def betterEvaluationFunction(currentGameState: GameState):
     DESCRIPTION: <write something here so we know what you did>
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    foodPositions = currentGameState.getFood().asList()
+    ghostPositions = currentGameState.getGhostPositions()
+    pacmanPosition = currentGameState.getPacmanPosition()
+    ghostStates = currentGameState.getGhostStates()
+    # Calculate nearest food
+    minFoodDistance = getMinDistance(foodPositions,pacmanPosition)
+    # Calculate nearest Ghost and penalty
+    scaredReward = 0
+    ghostPenalty = 0
+    for ghost in ghostStates:
+        dist = util.manhattanDistance(pacmanPosition,ghost.getPosition()) 
+        if(ghost.scaredTimer > 0):
+            scaredReward += 400 / (dist + 1)
+        else:
+            if(dist < 2):
+                ghostPenalty = 400
+            elif(dist < 4):
+                ghostPenalty = 200
+    #heruistic
+    eval = (
+            currentGameState.getScore() 
+            + 10/minFoodDistance
+            - ghostPenalty
+            + scaredReward
+        ) 
+    return eval
+
+def getMinDistance(objectsPosition : [],pacmanPosition: ()):
+    minDistance = float('inf')
+    for objectPosition in objectsPosition:
+        distance = util.manhattanDistance(objectPosition,pacmanPosition)
+        minDistance = distance if distance < minDistance else minDistance
+    return minDistance
 
 # Abbreviation
 better = betterEvaluationFunction
