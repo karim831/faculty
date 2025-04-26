@@ -68,13 +68,7 @@ def update(val):
     new_sys, (Kc, Ti, Td) = get_closed_loop(tau, theta, lam)
     t_out, y_out = ctrl.step_response(new_sys, t)
     line.set_ydata(y_out * input_amp)  # scale output according to input
-    input_line.set_ydata(input_amp * np.ones_like(t_out))  # adjust input line
-
-    # Update text labels for Kp, Ki, Kd
-    kp_text.set_text(f"Kp: {Kc:.2f}")
-    ki_text.set_text(f"Ki: {Kc/Ti:.2f}")  # Corrected Ki formula
-    kd_text.set_text(f"Kd: {Kc*Td:.2f}")  # Corrected Kd formula
-    
+    input_line.set_ydata(input_amp * np.ones_like(t_out))  # adjust input line    
     fig.canvas.draw_idle()
 
 for slider in sliders.values():
