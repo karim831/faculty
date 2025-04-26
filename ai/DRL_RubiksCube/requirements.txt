@@ -1,0 +1,8 @@
+numpy
+torch
+matplotlib
+tensorflow
+keras
+configparser
+PyQt5
+protobuf

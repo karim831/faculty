@@ -1,0 +1,6 @@
+model102.dat : 
+                Accuracy : 1.0__
+                Mean Generated Nodes : 552.0__
+                Mean Iteration : 4.0
+                Mean Solution Length : 5.0
+                        
