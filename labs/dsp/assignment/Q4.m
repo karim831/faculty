@@ -1,5 +1,5 @@
 [xn,fs] = audioread('../sound/file1.wav');
-
+sound(xn,fs)
 # 1- Read the file into MATLAB, specify #samples and time of recording in sec.
 N = length(xn); 
 
