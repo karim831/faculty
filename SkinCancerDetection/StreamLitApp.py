@@ -2,10 +2,12 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.keras.preprocessing import image
+import tensorflow as tf
 from tensorflow.keras.models import load_model
 
 # Load the trained model
-model = load_model('skin_cancer_cnn.h5')
+tf.config.set_visible_devices([], 'GPU')
+model = load_model('SkinCancer_CNN_Model.h5')
 
 
 # Function to preprocess and predict the image
