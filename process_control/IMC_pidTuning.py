@@ -11,21 +11,34 @@ def imc_pid(K, tau, theta, lam):
     return Kc, Ti, Td
 
 # Generate Closed-loop system
-def get_closed_loop(tau, theta, lam):
-    K = 1.0  # Set a default value for K
+def get_closed_loop(tau, theta, lam, steady_state_boost=1.0, add_integrator=True):
+    K = 1.0  # Process gain
     Kc, Ti, Td = imc_pid(K, tau, theta, lam)
+
+    # Apply optional boost
+    Kc *= steady_state_boost
 
     # Plant G(s) = K / (tau*s + 1) * e^(-theta*s)
     plant = ctrl.tf([K], [tau, 1])
     delay = ctrl.pade(theta, 1)
     G = plant * ctrl.tf(*delay)
 
-    # PID Controller C(s)
-    C = Kc * (1 + ctrl.tf([1], [Ti]) + ctrl.tf([Td, 0], [1]))
+    # Standard PID Controller
+    C_pid = Kc * (1 + ctrl.tf([1], [Ti]) + ctrl.tf([Td, 0], [1]))
+
+    # Extra low-frequency integrator
+    if add_integrator:
+        Ki = 0.2      # You can tune this
+        epsilon = 0.05
+        C_integrator = ctrl.tf([Ki], [1, epsilon])
+        C = C_pid + C_integrator
+    else:
+        C = C_pid
 
     # Closed-loop system
     T = ctrl.feedback(C * G, 1)
     return T, (Kc, Ti, Td)
+
 
 # Initial parameters
 tau0, theta0, lam0, input0 = 1.0, 0.5, 1.0, 1.0
