@@ -37,11 +37,11 @@ t = np.linspace(0, 1000, 5000)
 
 system, (Kc0, Ti0, Td0) = get_closed_loop(tau0, theta0, lam0)
 t_out, y_out = ctrl.step_response(system, t)
-line, = ax.plot(t_out, y_out * input_amp, label="System Output")
+line, = ax.plot(t_out, y_out * input_amp, label="Step Response")
 input_line, = ax.plot(t_out, input_amp * np.ones_like(t_out), 'r--', label="Step Input")
 ax.set_title("Step Response with Lambda Tuned PID")
 ax.set_xlabel("Time")
-ax.set_ylabel("Output")
+ax.set_ylabel("Step Input and Response")
 ax.legend()
 ax.set_ylim(-0.5, 2.0)  # Adjusted ylim for better visualization
 
