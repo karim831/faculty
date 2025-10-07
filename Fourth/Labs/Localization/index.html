@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Localiaztion Project</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/localization-service.js" defer></script>
+    <script type="module" src="./js/main.js" defer></script>
 </head>
 <body>
-    
     <h1>🤖 1D Robot Localization</h1>
-
+    
     <div>
-      <button onclick="localizer.sense('High')">Sense 'High'</button>
+      <button onclick="localizer.sense('high')">Sense 'High'</button>
+      <button onclick="localizer.sense('low')">Sense 'Low'</button>
       <button onclick="localizer.move(2)">Move 2 Steps Right</button>
-      <button onclick="localizer.sense('Low')">Sense 'Low'</button>
       <button onclick="localizer.resetBelieve()">Reset</button>
     </div>
-
     <div class="world" id="world"></div>
 </body>
 </html>
