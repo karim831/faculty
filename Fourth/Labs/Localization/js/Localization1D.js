@@ -14,19 +14,28 @@ export class Localization1D{
         this.believe = Array(this.world.length).fill(1 / this.world.length);
         return this.render();
     }
+
+    /**
+     * 
+     * @param {number[]} bel 
+     */
+    normalize(bel){
+        const sum = bel.reduce((prev, curr) => prev + curr);
+        return bel.map(b => b / sum);
+    }
     
     /**
      * 
-     * @param {string} measurement
+     * @param {string} measurement 
+     * @param {number} pHit 
+     * @param {number} pMiss 
      */
     sense(measurement, pHit = .7 , pMiss = .2){
         const newBel = this.believe.map((b,i) => {
            return b * (measurement.toLowerCase() == this.world[i].toLowerCase() ? pHit : pMiss);
         });
 
-        const sum = newBel.reduce((prev, curr) => prev + curr);
-        
-        this.believe = newBel.map(b => b / sum);
+        this.believe = this.normalize(newBel);
         
         this.render();
         this.printBelieve();
@@ -40,10 +49,12 @@ export class Localization1D{
         const n = this.world.length;
         let newBel = Array(n).fill(0);
 
+        const mod = (v,limit) => ((v % limit) + limit) % limit;
+
         this.believe.forEach((b, i) => {
-            newBel[this.#mod(i + step,n)] += b * pExact;
-            newBel[this.#mod(i + step + 1,n)] += b * pOvershoot;
-            newBel[this.#mod(i + step - 1,n)] += b * pUndershoot;
+            newBel[mod(i + step, n)] += b * pExact;
+            newBel[mod(i + step + 1, n)] += b * pOvershoot;
+            newBel[mod(i + step - 1, n)] += b * pUndershoot;
         });
         
         this.believe = newBel;
@@ -84,18 +95,8 @@ export class Localization1D{
         });
         console.log("Sum:", this.believe.reduce((a, b) => a + b, 0).toFixed(4));
     }
-
-
-    /**
-     * 
-     * @param {number} x 
-     * @param {number} m 
-     */
-    #mod(x, m){
-        const modelusResult = x % m;
-        if(modelusResult < 0)
-            return m + modelusResult;
-        return modelusResult;
-    }
-
 }
+
+const world = ['High','Low','Low','High','Low','High','Low','Low'];
+
+window.localizer =  new Localization1D(world);

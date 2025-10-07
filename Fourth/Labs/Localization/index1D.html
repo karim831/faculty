@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localiaztion Project</title>
+    <link rel="stylesheet" href="./css/style1D.css">
+    <script type="module" src="./js/Localization1D.js" defer></script>
+</head>
+<body>
+  <h1>🤖 1D Robot Localization</h1>
+
+  <div>
+    <button onclick="localizer.sense('high')">Sense 'High'</button>
+    <button onclick="localizer.sense('low')">Sense 'Low'</button>
+
+    <div style="margin-top: 10px;">
+      <label>Move steps: </label>
+      <input type="number" id="stepCount" value="1" style="width:60px">
+      <button onclick="moveSteps()">Move ➡️</button>
+    </div>
+
+    <button style="margin-top:10px;" onclick="localizer.resetBelieve()">Reset</button>
+  </div>
+
+  <div class="world" id="world"></div>
+
+  <script>
+    function moveSteps() {
+      const steps = parseInt(document.getElementById('stepCount').value) || 0;
+      localizer.move(steps);
+    }
+  </script>
+
+</body>
+</html>
