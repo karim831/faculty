@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build AVR (Active File)",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "mkdir -p build && /opt/avr8-gnu-toolchain-linux_x86_64/bin/avr-gcc -mmcu=atmega32 -D__AVR_ATmega32__  -Os -Wall -std=c11 ${file} -o build/${fileBasenameNoExtension}.elf && /opt/avr8-gnu-toolchain-linux_x86_64/bin/avr-objcopy -O ihex build/${fileBasenameNoExtension}.elf build/${fileBasenameNoExtension}.hex"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Builds the active C file for ATmega32 and creates dynamically named .elf and .hex files in the build/ directory."
+        }
+    ]
+}

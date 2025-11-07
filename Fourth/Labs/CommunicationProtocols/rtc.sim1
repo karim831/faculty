@@ -1,0 +1,13 @@
+<circuit version="1.1.0-SR0" rev="1917" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Subcircuit" CircId="Uno-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-268,-88" rotation="0" hflip="1" vflip="1" label="Uno-1" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Logic_Symbol="false">
+<mainCompProps MainCompId="mega328-109" Frequency="16 MHz" Program="../../../../../Arduino/rtc/build/arduino.avr.uno/rtc.ino.hex" Auto_Load="true" saveEepr="true" SerialMon="1" />
+</item>
+
+<item itemtype="SerialPort" CircId="SerialPort-4" mainComp="false" Show_id="false" Show_Val="false" Pos="-220,-176" rotation="720" hflip="1" vflip="1" label="SerialPort-4" idLabPos="-20,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" Auto="false" Port="/dev/pts/2" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="true" />
+
+<item itemtype="Connector" uid="Connector-14" startpinid="SerialPort-4-pin1" endpinid="Uno-1-1" pointList="-260,-168,-304,-168,-304,-64,-260,-64" />
+
+<item itemtype="Connector" uid="Connector-15" startpinid="SerialPort-4-pin0" endpinid="Uno-1-0" pointList="-260,-184,-292,-184,-292,-72,-260,-72" />
+
+</circuit>

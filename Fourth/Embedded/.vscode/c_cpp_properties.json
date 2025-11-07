@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "AVR",
+            "compilerPath": "/opt/avr8-gnu-toolchain-linux_x86_64/bin/avr-gcc",
+            "intelliSenseMode": "gcc-x86",
+            "cStandard": "c11",
+            "includePath": [
+                "/opt/avr8-gnu-toolchain-linux_x86_64/avr/include/"
+            ],
+            "defines": [
+                "F_CPU=8000000UL",
+                "__AVR_ATmega32__"
+            ],
+            "browse": {
+                "path": [
+                    "/opt/avr8-gnu-toolchain-linux_x86_64/avr/include/"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}

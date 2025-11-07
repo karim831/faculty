@@ -1,0 +1,21 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-1" mainComp="false" Show_id="false" Show_Val="false" Pos="-544,-92" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-1" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Voltage="5 V" Out="true" />
+
+<item itemtype="Resistor" CircId="Resistor-2" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-508,-164" rotation="0" hflip="1" vflip="1" label="Resistor-2" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="360 Ω" />
+
+<item itemtype="Led" CircId="Led-3" mainComp="false" Show_id="false" Show_Val="false" Pos="-588,-164" rotation="540" hflip="1" vflip="1" label="Led-3" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" Grounded="false" Threshold="2.4 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
+
+<item itemtype="Ground" CircId="Ground-4" mainComp="false" Show_id="false" Show_Val="false" Pos="-620,-96" rotation="0" hflip="1" vflip="1" label="Ground-4" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="MCU" CircId="mega32-5" mainComp="false" Show_id="true" Show_Val="false" Pos="-456,-172" rotation="0" hflip="1" vflip="1" label="mega32-5" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="8 MHz" Program="../build/on_off_program.hex" Auto_Load="true" saveEepr="true" Logic_Symbol="false" Wdt_enabled="false" varList="TCCR1B,TCNT1H,TCNT1L,TIMSK,OCR1AH,OCR1AL,TCCR1B,TIFR,PORTB" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="Led-3-lPin" endpinid="Resistor-2-lPin" pointList="-572,-164,-524,-164" />
+
+<item itemtype="Connector" uid="Connector-2" startpinid="Resistor-2-rPin" endpinid="mega32-5-PORTB0" pointList="-492,-164,-464,-164" />
+
+<item itemtype="Connector" uid="Connector-3" startpinid="Fixed Voltage-1-outnod" endpinid="mega32-5-RST" pointList="-528,-92,-520,-92,-520,-100,-464,-100" />
+
+<item itemtype="Connector" uid="Connector-4" startpinid="Led-3-rPin" endpinid="Ground-4-Gnd" pointList="-604,-164,-620,-164,-620,-112" />
+
+</circuit>
