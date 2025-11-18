@@ -1,0 +1,103 @@
+@{
+    ViewBag.Title = "Sensors Dashboard";
+}
+
+<div class="dashboard">
+    <h1 class="title">Sensors Dashboard</h1>
+
+    <div class="controls">
+        <button id="connectButton" class="btn btn-primary btn-lg">Connect</button>
+        <button id="toggleFormat" class="btn btn-secondary btn-lg" style="margin-left: 10px;">AM/PM</button>
+    </div>
+
+    <div class="cards">
+        <div class="card datetime-card">
+            <div class="card-title">DateTime</div>
+            <div id="dateTime" class="card-value">YYYY/MM/DD HH:MM:SS</div>
+        </div>
+
+        <div class="card temp-card">
+            <div class="card-title">Temperature (°C)</div>
+            <div id="temperature" class="card-value">--.--</div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/libs/signalr.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/SensorsManager")
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+
+        const btn = document.getElementById("connectButton");
+        const toggleFormatBtn = document.getElementById("toggleFormat");
+
+        let isConnected = false;
+        let isAmPmMode = false; // default: 24-hour mode
+
+        toggleFormatBtn.addEventListener("click", () => {
+            isAmPmMode = !isAmPmMode;
+            toggleFormatBtn.innerText = isAmPmMode ? "24-Hour" : "AM/PM";
+        });
+
+        async function toggleConnection() {
+            if (!isConnected) {
+                try {
+                    await connection.start();
+                    console.log("SignalR Connected.");
+                    btn.innerText = "Disconnect";
+                    btn.classList.remove("btn-primary");
+                    btn.classList.add("btn-danger");
+                    isConnected = true;
+                } catch (err) {
+                    console.error(err);
+                    setTimeout(toggleConnection, 2000);
+                }
+            } else {
+                try {
+                    await connection.stop();
+                    console.log("SignalR Disconnected.");
+                    btn.innerText = "Connect";
+                    btn.classList.remove("btn-danger");
+                    btn.classList.add("btn-primary");
+                    isConnected = false;
+                } catch (err) {
+                    console.error("Error disconnecting:", err);
+                }
+            }
+        }
+
+        btn.addEventListener("click", toggleConnection);
+
+        // Update clock, full timestamp, and temperature
+        connection.on("ReadSensorsData", function(time, temp) {
+            const dateTimeEl = document.getElementById("dateTime");
+            const tempEl = document.getElementById("temperature");
+
+            const parts = time.split(' '); // e.g., "25 11 18 13 51 27"
+            let year = parts[0].padStart(2,'0');
+            let month = parts[1].padStart(2,'0');
+            let day = parts[2].padStart(2,'0');
+            let hour = parseInt(parts[3]);
+            let minute = parts[4].padStart(2,'0');
+            let second = parts[5].padStart(2,'0');
+
+            let suffix = "";
+            let displayHour = hour;
+
+            if (isAmPmMode) {
+                suffix = hour >= 12 ? " PM" : " AM";
+                displayHour = hour % 12;
+                if (displayHour === 0) displayHour = 12;
+                displayHour = displayHour.toString().padStart(2,'0');
+            } else {
+                displayHour = hour.toString().padStart(2,'0');
+            }
+
+            dateTimeEl.innerText = `${year}/${month}/${day} ${displayHour}:${minute}:${second}${suffix}`;
+            tempEl.innerText = parseFloat(temp).toFixed(2);
+        });
+    </script>
+}

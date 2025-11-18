@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile DisplayManager Sketch",
+            "type": "shell",
+            "command": "arduino-cli",
+            "args": [
+                "compile",
+                "--fqbn",
+                "arduino:avr:uno",
+                "--output-dir",
+                "DisplayManager/build",
+                "DisplayManager/DisplayManager.ino"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Compile SensorsManager Sketch",
+            "type": "shell",
+            "command": "arduino-cli",
+            "args": [
+                "compile",
+                "--fqbn",
+                "arduino:avr:uno",
+                "--output-dir",
+                "SensorsManager/build",
+                "SensorsManager/SensorsManager.ino"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Compile All Sketches",
+            "dependsOn": [
+                "Compile DisplayManager Sketch",
+                "Compile SensorsManager Sketch"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

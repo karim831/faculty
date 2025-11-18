@@ -1,0 +1,82 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #f4f6f8, #e2e8f0);
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dashboard layout */
+.dashboard {
+    text-align: center;
+    padding: 2rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Button styling */
+.controls .btn {
+    background-color: #007bff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.controls .btn:disabled {
+    background-color: #28a745;
+    cursor: not-allowed;
+}
+
+.controls .btn:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+/* Cards container */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+/* Card styling */
+.card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    padding: 2rem 3rem;
+    min-width: 200px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.card-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #222;
+}
+
+/* Temperature card specific */
+.temp-card .card-value {
+    color: #e74c3c;
+}
+
+/* DateTime card specific */
+.datetime-card .card-value {
+    color: #3498db;
+}

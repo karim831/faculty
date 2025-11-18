@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile SensorsManager Sketch",
+            "type": "shell",
+            "command": "arduino-cli",
+            "args": [
+                "compile",
+                "--fqbn",
+                "arduino:avr:uno",
+                "--output-dir",
+                "SensorsManager/build",
+                "SensorsManager/SensorsManager.ino"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

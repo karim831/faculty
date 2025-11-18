@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "dcvJPfS63TtHNVsxMQbVSWFu12ou7RoSXZh3MU9i8bE=",
+  "Source": "DisplayManager",
+  "BasePath": "_content/DisplayManager",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "DisplayManager/wwwroot",
+      "Source": "DisplayManager",
+      "ContentRoot": "/home/kareem/Studying/Faculty/Fourth/Labs/CommunicationProtocols/FrontEndDisplay/DisplayManager/wwwroot/",
+      "BasePath": "_content/DisplayManager",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/kareem/Studying/Faculty/Fourth/Labs/CommunicationProtocols/FrontEndDisplay/DisplayManager/obj/Debug/net8.0/scopedcss/bundle/DisplayManager.styles.css",
+      "SourceId": "DisplayManager",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/kareem/Studying/Faculty/Fourth/Labs/CommunicationProtocols/FrontEndDisplay/DisplayManager/obj/Debug/net8.0/scopedcss/bundle/",
+      "BasePath": "_content/DisplayManager",
+      "RelativePath": "DisplayManager.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/kareem/Studying/Faculty/Fourth/Labs/CommunicationProtocols/FrontEndDisplay/DisplayManager/obj/Debug/net8.0/scopedcss/bundle/DisplayManager.styles.css"
+    },
+    {
+      "Identity": "/home/kareem/Studying/Faculty/Fourth/Labs/CommunicationProtocols/FrontEndDisplay/DisplayManager/obj/Debug/net8.0/scopedcss/projectbundle/DisplayManager.bundle.scp.css",
+      "SourceId": "DisplayManager",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/kareem/Studying/Faculty/Fourth/Labs/CommunicationProtocols/FrontEndDisplay/DisplayManager/obj/Debug/net8.0/scopedcss/projectbundle/",
+      "BasePath": "_content/DisplayManager",
+      "RelativePath": "DisplayManager.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/kareem/Studying/Faculty/Fourth/Labs/CommunicationProtocols/FrontEndDisplay/DisplayManager/obj/Debug/net8.0/scopedcss/projectbundle/DisplayManager.bundle.scp.css"
+    },
+    {
+      "Identity": "/home/kareem/Studying/Faculty/Fourth/Labs/CommunicationProtocols/FrontEndDisplay/DisplayManager/wwwroot/js/libs/signalr.js",
+      "SourceId": "DisplayManager",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/kareem/Studying/Faculty/Fourth/Labs/CommunicationProtocols/FrontEndDisplay/DisplayManager/wwwroot/",
+      "BasePath": "_content/DisplayManager",
+      "RelativePath": "js/libs/signalr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/libs/signalr.js"
+    }
+  ]
+}
